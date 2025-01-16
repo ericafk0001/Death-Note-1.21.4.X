@@ -66,11 +66,11 @@ public class DeathNoteItem extends Item {
                             server.getCommandManager().executeWithPrefix(source, "title " + victimName + " times 20 60 20");
                             server.getCommandManager().executeWithPrefix(source, "title " + victimName + " subtitle {\"text\":\"Death Note claims another soul...\",\"color\":\"red\"}");
                             server.getCommandManager().executeWithPrefix(source, "title " + victimName + " title {\"text\":\"Your name was written\",\"color\":\"dark_red\"}");
+                            server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 1 1");
                             new Thread(() -> {
                                 try {
                                     Thread.sleep(5000);
                                         // Death effects
-                                    server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 1 1");
                                     server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run particle minecraft:smoke ~ ~1 ~ 0.5t 0.5 0.5 0.1 100");
                                     server.getCommandManager().executeWithPrefix(source, "kill " + victimName);
                                 } catch (InterruptedException e) {

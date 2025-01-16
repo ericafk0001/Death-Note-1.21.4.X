@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "food",
+  "key": {
+    "#": {
+      "item": "minecraft:writable_book"
+    },
+    "@": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "!": {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    "a": {
+      "item": "minecraft:apple"
+    },
+    "t": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "n": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    "@!@",
+    "a#a",
+    "tnt"
+  ],
+  "result": {
+    "count": 1,
+    "id": "deathnote:death_note_item"
+  }
+}

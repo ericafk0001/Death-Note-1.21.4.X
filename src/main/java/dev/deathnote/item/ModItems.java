@@ -14,10 +14,11 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
-    //items
+    //food
     public static final Item SHINIGAMI_APPLE = registerItem("shinigami_apple", new Item(new Item.Settings().food(ModFoodComponents.SHINIGAMI_APPLE)));
     public static final Item POTATO_CHIP = registerItem("potato_chip", new Item(new Item.Settings().food(ModFoodComponents.POTATO_CHIP)));
 
+    //items
     public static final Item DEATH_NOTE_ITEM = registerItem("death_note_item",
             new DeathNoteItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC).component(DataComponentTypes.WRITABLE_BOOK_CONTENT, WritableBookContentComponent.DEFAULT)));
 

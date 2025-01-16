@@ -37,12 +37,22 @@ public class DeathNoteItem extends Item {
         private static final Field pagesField;
 
         static {
+            Field tempField = null;
             try {
-                pagesField = BookEditScreen.class.getDeclaredField("pages");
-                pagesField.setAccessible(true);
-            } catch (NoSuchFieldException e) {
+                for (Field field : BookEditScreen.class.getDeclaredFields()) {
+                    if (List.class.isAssignableFrom(field.getType())) {
+                        tempField = field;
+                        tempField.setAccessible(true);
+                        break;
+                    }
+                }
+                if (tempField == null) {
+                    throw new NoSuchFieldException("No field of type List found in BookEditScreen");
+                }
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            pagesField = tempField;
         }
 
         public CustomBookEditScreen(PlayerEntity player, ItemStack book, Hand hand) {
@@ -70,14 +80,12 @@ public class DeathNoteItem extends Item {
                             new Thread(() -> {
                                 try {
                                     Thread.sleep(5000);
-                                        // Death effects
-                                    server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run particle minecraft:smoke ~ ~1 ~ 0.5t 0.5 0.5 0.1 100");
+                                    server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run particle minecraft:smoke ~ ~1 ~ 0.5 0.5 0.5 0.1 100");
                                     server.getCommandManager().executeWithPrefix(source, "kill " + victimName);
                                 } catch (InterruptedException e) {
                                     LOGGER.error("Death Note effect interrupted", e);
                                 }
                             }).start();
-
                         }
                     }
                 }

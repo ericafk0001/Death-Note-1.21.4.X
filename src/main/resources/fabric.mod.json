@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "deathnote",
-	"version": "${version}",
+	"version": "1.0",
 	"name": "Death Note",
 	"description": "Adds Death Note Items into Minecraft",
 	"authors": [
@@ -12,7 +12,7 @@
 		"sources": "https://github.com/ericafk0001/Death-Note-1.21.X"
 	},
 	"license": "MIT",
-	"icon": "assets/deathnote/icon.png",
+	"icon": "assets/deathnote/icon.jpg",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

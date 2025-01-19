@@ -29,20 +29,26 @@ public class DeathNote implements ModInitializer {
 			context.server().execute(() -> {
 				MinecraftServer server = context.server();
 				if (server != null) {
-					ServerCommandSource source = server.getCommandSource();
-					server.getCommandManager().executeWithPrefix(source, "title " + victimName + " times 20 60 20");
-					server.getCommandManager().executeWithPrefix(source, "title " + victimName + " subtitle {\"text\":\"Death Note claims another soul...\",\"color\":\"red\"}");
-					server.getCommandManager().executeWithPrefix(source, "title " + victimName + " title {\"text\":\"Your name was written\",\"color\":\"dark_red\"}");
-					server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 1 1");
-					new Thread(() -> {
-						try {
-							Thread.sleep(5000);
-							server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run particle minecraft:smoke ~ ~1 ~ 0.5 0.5 0.5 0.1 100");
-							server.getCommandManager().executeWithPrefix(source, "kill " + victimName);
-						} catch (InterruptedException e) {
-							LOGGER.error("Death Note effect interrupted", e);
-						}
-					}).start();
+					if (server.getPlayerManager().getPlayer(victimName) != null) {
+						ServerCommandSource source = server.getCommandSource();
+						server.getCommandManager().executeWithPrefix(source, "title " + victimName + " times 20 60 20");
+						server.getCommandManager().executeWithPrefix(source, "title " + victimName + " subtitle {\"text\":\"Death Note claims another soul...\",\"color\":\"red\"}");
+						server.getCommandManager().executeWithPrefix(source, "title " + victimName + " title {\"text\":\"Your name was written\",\"color\":\"dark_red\"}");
+						server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 1 1");
+						new Thread(() -> {
+							try {
+								Thread.sleep(5000);
+								server.getCommandManager().executeWithPrefix(source, "execute at " + victimName + " run particle minecraft:smoke ~ ~1 ~ 0.5 0.5 0.5 0.1 100");
+								server.getCommandManager().executeWithPrefix(source, "kill " + victimName);
+							} catch (InterruptedException e) {
+								LOGGER.error("Death Note effect interrupted", e);
+							}
+						}).start();
+					} else {
+						ServerCommandSource source = server.getCommandSource();
+						server.getCommandManager().executeWithPrefix(source, "execute at " + "@e[type=minecraft:" + victimName.toLowerCase() + ",sort=nearest,limit=1]" + " run playsound minecraft:entity.lightning_bolt.thunder player @a ~ ~ ~ 1 1");
+						server.getCommandManager().executeWithPrefix(source, "kill @e[type=minecraft:" + victimName.toLowerCase() + ",sort=nearest,limit=1]");
+					}
 				}
 			});
 		});

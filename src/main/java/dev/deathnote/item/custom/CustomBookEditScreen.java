@@ -68,9 +68,10 @@ public class CustomBookEditScreen extends BookEditScreen {
         try {
             @SuppressWarnings("unchecked")
             List<String> bookText = (List<String>) pagesField.get(this);
-
             if (!bookText.isEmpty()) {
-                String victimName = bookText.getLast().trim();
+                String lastLine = bookText.get(bookText.size() - 1).trim();
+                String[] names = lastLine.split("\\s+");
+                String victimName = names[names.length - 1];
                 if (!victimName.isEmpty()) {
                     DeathNoteEffectPayload.send(victimName);
                 }

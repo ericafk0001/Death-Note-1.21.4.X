@@ -1,3 +1,4 @@
+//ModItems.java
 package dev.deathnote.item;
 
 import dev.deathnote.DeathNote;
@@ -14,11 +15,11 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
-    //food
+    // Food items
     public static final Item SHINIGAMI_APPLE = registerItem("shinigami_apple", new Item(new Item.Settings().food(ModFoodComponents.SHINIGAMI_APPLE)));
     public static final Item POTATO_CHIP = registerItem("potato_chip", new Item(new Item.Settings().food(ModFoodComponents.POTATO_CHIP)));
 
-    //items
+    // Custom items
     public static final Item DEATH_NOTE_ITEM = registerItem("death_note_item",
             new DeathNoteItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC).component(DataComponentTypes.WRITABLE_BOOK_CONTENT, WritableBookContentComponent.DEFAULT)));
 
@@ -30,6 +31,9 @@ public class ModItems {
         DeathNote.LOGGER.info("Registering Mod Items for " + DeathNote.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+            entries.add(SHINIGAMI_APPLE);
+            entries.add(POTATO_CHIP);
+            entries.add(DEATH_NOTE_ITEM);
         });
     }
 }

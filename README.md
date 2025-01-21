@@ -12,8 +12,11 @@ A Fabric Minecraft mod for Version 1.21 that adds a few new items to the game fr
 
 ## Demo
 
-[Modrinth Page](https://skibidi)
-[Trailer](https://youtube.com/)
+### [Modrinth Page](https://modrinth.com/mod/mc-death-note-mod)
+
+### [Trailer](https://youtu.be/mRzcB2U3BUk)
+
+### [Demo](https://youtu.be/WkHIZz7zfR4)
 
 ## Screenshot
 
